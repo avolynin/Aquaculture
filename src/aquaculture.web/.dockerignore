@@ -1,0 +1,5 @@
+node_modules
+build
+.dockerignore
+Dcokerfile
+Dcokerfile.prod
