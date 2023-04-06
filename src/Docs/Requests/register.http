@@ -1,0 +1,11 @@
+//@host=https://localhost:7029
+@host=http://localhost:5000
+
+POST {{host}}/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Aafsdd3red",
+  "email": "volsfds@mail.ru",
+  "password": "23232223"
+}

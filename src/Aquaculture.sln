@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquaculture.Api", "Aquaculture.Api\Aquaculture.Api.csproj", "{27FE41AA-43D8-4F9F-8295-D4390A92434B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquaculture.Application", "Aquaculture.Application\Aquaculture.Application.csproj", "{410F23AF-E249-4F8C-9398-30F140C4B170}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquaculture.Contracts", "Aquaculture.Contracts\Aquaculture.Contracts.csproj", "{3F9D52A1-79D0-495D-8099-D969B3F6096B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquaculture.Infrastructure", "Aquaculture.Infrastructure\Aquaculture.Infrastructure.csproj", "{A33E91A0-7D1C-4E9B-BB88-830659CD9F92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aquaculture.Domain", "Aquaculture.Domain\Aquaculture.Domain.csproj", "{387ECE2D-774E-4324-B959-977B0D8DBBD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50B929CB-18CC-40F1-955D-5F0AF33A92D1}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{7D2208F2-DB75-489D-BCF9-F3F3FD19E714}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27FE41AA-43D8-4F9F-8295-D4390A92434B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27FE41AA-43D8-4F9F-8295-D4390A92434B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27FE41AA-43D8-4F9F-8295-D4390A92434B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27FE41AA-43D8-4F9F-8295-D4390A92434B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410F23AF-E249-4F8C-9398-30F140C4B170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410F23AF-E249-4F8C-9398-30F140C4B170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410F23AF-E249-4F8C-9398-30F140C4B170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410F23AF-E249-4F8C-9398-30F140C4B170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9D52A1-79D0-495D-8099-D969B3F6096B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9D52A1-79D0-495D-8099-D969B3F6096B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9D52A1-79D0-495D-8099-D969B3F6096B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9D52A1-79D0-495D-8099-D969B3F6096B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33E91A0-7D1C-4E9B-BB88-830659CD9F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33E91A0-7D1C-4E9B-BB88-830659CD9F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33E91A0-7D1C-4E9B-BB88-830659CD9F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33E91A0-7D1C-4E9B-BB88-830659CD9F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387ECE2D-774E-4324-B959-977B0D8DBBD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387ECE2D-774E-4324-B959-977B0D8DBBD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387ECE2D-774E-4324-B959-977B0D8DBBD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387ECE2D-774E-4324-B959-977B0D8DBBD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2208F2-DB75-489D-BCF9-F3F3FD19E714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2208F2-DB75-489D-BCF9-F3F3FD19E714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2208F2-DB75-489D-BCF9-F3F3FD19E714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2208F2-DB75-489D-BCF9-F3F3FD19E714}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8277C60-D8EF-4152-B30D-BC395EACFC42}
+	EndGlobalSection
+EndGlobal
