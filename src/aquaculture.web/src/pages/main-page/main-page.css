@@ -1,0 +1,22 @@
+/*Sidebar------------------------------------------------Sidebar*/
+.sideBar.text.active {
+    display: flex;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.sideBar.text {
+    display: none;
+}
+/*Sidebar------------------------------------------------Sidebar*/
+
+/* Styles for main content */
+.main-content
+{
+    position: relative;
+    top: 70px;
+    background-color: #f4f4f4;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}

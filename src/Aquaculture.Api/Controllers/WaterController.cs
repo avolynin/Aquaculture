@@ -42,7 +42,7 @@ public class WaterController : ApiController
         return queryMeasurementsResult.Match(
             measurementsResult =>
             {
-                List<WaterMeasurementDto> waterMeasurementDtos = new List<WaterMeasurementDto>();
+                var waterMeasurementDtos = new List<WaterMeasurementDto>();
                 foreach (var item in measurementsResult)
                 {
                     waterMeasurementDtos.Add(_mapper.Map<WaterMeasurementDto>(item));

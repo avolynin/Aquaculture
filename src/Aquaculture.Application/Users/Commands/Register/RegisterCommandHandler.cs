@@ -1,8 +1,8 @@
 ﻿using Aquaculture.Application.Common;
 using Aquaculture.Application.Services.Users.Common;
 using Aquaculture.Domain.Common.Errors;
+using Aquaculture.Domain.PersonalContext.UserAggregate;
 using Aquaculture.Domain.Repositories;
-using Aquaculture.Domain.UserAggregate;
 using ErrorOr;
 using MediatR;
 

@@ -1,6 +1,6 @@
-﻿using Aquaculture.Domain.Repositories;
-using Aquaculture.Domain.UserAggregate;
-using Aquaculture.Domain.UserAggregate.ValueObjects;
+﻿using Aquaculture.Domain.PersonalContext.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate.ValueObjects;
+using Aquaculture.Domain.Repositories;
 
 namespace Aquaculture.Infrastructure.Persistence.Repositories;
 
@@ -21,7 +21,6 @@ public class UserRepository : IUserRepository
 
     public void Update(User user)
     {
-        _dbContext.Users.Remove(user);
         _dbContext.Users.Update(user);
         _dbContext.SaveChanges();
     }
@@ -30,5 +29,5 @@ public class UserRepository : IUserRepository
         => _dbContext.Users.SingleOrDefault(u => u.Email == email);
 
     public User? Get(UserId userId)
-        => _dbContext.Users.First(u => u.Id.Value == userId.Value);
+        => _dbContext.Users.Find(userId);
 }

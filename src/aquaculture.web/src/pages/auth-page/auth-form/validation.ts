@@ -15,7 +15,3 @@ export const emailValidation={
 export const passwordValidation={
     required: REQUIRED_FIELD
 }
-
-export const usernameValidation={
-    required: REQUIRED_FIELD
-}

@@ -1,39 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MeasurementsList from "../components/measurementsList";
-import { WaterMeasurement } from "../types";
+import { FishTank, WaterMeasurement } from "../types";
 import MeasurementsChart from "../components/measurementsChart";
+import FishTankList from "../components/fishTankList";
 
 const MeasurementsForm = () => {
     const [ data, setData ] = useState<WaterMeasurement[] | undefined>(undefined);
-    const [fishTankId, setfishTankId] = useState('');
+    const [ fishTanks, setFishTanks ] = useState<FishTank[] | undefined>(undefined);
+    const [ fishTank, setFishTank ] = useState<FishTank | undefined>(undefined);
     
     const search = () => {
-        fetchData(fishTankId);
+        fetchData(fishTank!);
     };
-    const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const enteredfishTankId = event.target.value;
-        setfishTankId(enteredfishTankId);
-      };
 
-    const fetchData = async (fishTankId: string) => {
-        const response = await fetch(`api/water/measurement/${fishTankId}`, {
+    const fetchData = async (fishTank: FishTank) => {
+        const response = await fetch(`api/water/measurement/${fishTank.id}`, {
             method: "get"
         });
 
         const responseJson: WaterMeasurement[] = await response.json();
         setData(responseJson);
     }
+
+    const fetchFishTanks = async () => {
+        const response = await fetch(`api/fishTanks`, {
+            method: "get"
+        });
+
+        const responseJson: FishTank[] = await response.json();
+        setFishTanks(responseJson);
+    }
+
+    useEffect(() => {
+        fetchFishTanks();
+    }, [])
     
+    useEffect(() => {
+        console.log('here')
+        fishTank ? fetchData(fishTank) : console.log(fishTanks);
+    }, [fishTank, fishTanks])
+
     return(
         <div className="measurements-form">
-            <h1>Meansurements list of 3FA85F64-5717-4562-B3FC-2C963F66AFA6:</h1>
-            <input
-                value={fishTankId}
-                onChange={inputHandler}
-                placeholder="Search measurements"
-                className="input"
-            />
-
+            <h1 id="title">Садки:</h1>
+            {fishTanks ? (<FishTankList fishTanks={fishTanks} setFishTank={setFishTank}/>) : ("Loading...")}
             <button onClick={search}>Search</button>
             <br/>
             {data ? (

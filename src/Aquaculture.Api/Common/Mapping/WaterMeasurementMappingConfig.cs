@@ -1,8 +1,8 @@
 ﻿using Aquaculture.Application.Water.Measurement.Commands.Create;
 using Aquaculture.Application.Water.Measurement.Queries;
 using Aquaculture.Contracts.Dto;
-using Aquaculture.Domain.WaterMeasurementAggreate;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Mapster;
 
 namespace Aquaculture.Api.Common.Mapping;

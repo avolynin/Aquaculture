@@ -23,3 +23,10 @@ export type MeasurementChartData = {
     carbonDioxide: number;
     ammonia: number;
 }
+
+export type FishTank = {
+    id: string;
+    fishInfoId: string;
+    waterMeasurementId: string;
+    name: string;
+}

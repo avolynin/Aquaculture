@@ -1,6 +1,6 @@
-﻿using Aquaculture.Domain.FishTankAggregate;
-using Aquaculture.Domain.FishTankAggregate.ValueObjects;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate;
+using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -27,5 +27,12 @@ public class FishTankConfigurations : IEntityTypeConfiguration<FishTank>
             .HasConversion(
             id => id.Value,
             value => WaterMeasurementId.Create(value));
+
+        builder.Property(m => m.FishInfoId)
+            .HasConversion(
+            id => id.Value,
+            value => FishInfoId.Create(value));
+
+        builder.Property(m => m.Name);
     }
 }

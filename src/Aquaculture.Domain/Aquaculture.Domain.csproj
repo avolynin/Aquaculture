@@ -9,10 +9,11 @@
   <ItemGroup>
     <PackageReference Include="ErrorOr" Version="1.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="System.Device.Location.Portable" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="FishTankAggregate\Entities\" />
+    <Folder Include="InfluenceWaterContext\FishTankAggregate\" />
   </ItemGroup>
 
 </Project>

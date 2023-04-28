@@ -1,9 +1,9 @@
 ﻿using Aquaculture.Application.Common;
 using Aquaculture.Application.Services.Users.Common;
 using Aquaculture.Domain.Common.Errors;
+using Aquaculture.Domain.PersonalContext.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate.ValueObjects;
 using Aquaculture.Domain.Repositories;
-using Aquaculture.Domain.UserAggregate;
-using Aquaculture.Domain.UserAggregate.ValueObjects;
 using ErrorOr;
 using MediatR;
 using OneOf.Types;
@@ -24,17 +24,17 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Error
         await Task.CompletedTask;
         UserId userId = UserId.Create(command.Id);
 
-        if (_userRepository.GetByEmail(command.Email) is not User user)
+        if (_userRepository.Get(userId) is not User user)
         {
             return Errors.User.NotFoundUser;
         }
 
-        user = User.Create(
-            userId,
-            command.FullName ?? user.FullName,
-            command.Email ?? user.Email,
-            command.Role ?? user.Role,
-            command.Password ?? user.Password);
+        user.Update(
+            fullName: command.FullName,
+            email: command.Email,
+            role: command.Role,
+            password: command.Password);
+
         _userRepository.Update(user);
 
         return user;

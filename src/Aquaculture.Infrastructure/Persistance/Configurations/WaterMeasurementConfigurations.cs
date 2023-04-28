@@ -1,6 +1,6 @@
-﻿using Aquaculture.Domain.FishTankAggregate.ValueObjects;
-using Aquaculture.Domain.WaterMeasurementAggreate;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -30,15 +30,5 @@ public class WaterMeasurementConfigurations : IEntityTypeConfiguration<WaterMeas
             value => FishTankId.Create(value));
 
         builder.Property(m => m.TimeStamp);
-
-        builder.OwnsOne(x => x.WaterParams, p =>
-        {
-            p.Property(m => m.Temperature);
-            p.Property(m => m.DissolvedOxygen);
-            p.Property(m => m.Acidity);
-            p.Property(m => m.Alkalinity);
-            p.Property(m => m.CarbonDioxide);
-            p.Property(m => m.Ammonia);
-        });
     }
 }

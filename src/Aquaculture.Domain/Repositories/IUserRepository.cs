@@ -1,5 +1,5 @@
-﻿using Aquaculture.Domain.UserAggregate;
-using Aquaculture.Domain.UserAggregate.ValueObjects;
+﻿using Aquaculture.Domain.PersonalContext.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate.ValueObjects;
 
 namespace Aquaculture.Domain.Repositories;
 

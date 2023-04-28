@@ -1,5 +1,5 @@
-﻿using Aquaculture.Domain.WaterMeasurementAggreate;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
+﻿using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using ErrorOr;
 using MediatR;
 

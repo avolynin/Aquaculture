@@ -1,4 +1,4 @@
-﻿using Aquaculture.Domain.UserAggregate;
+﻿using Aquaculture.Domain.PersonalContext.UserAggregate;
 
 namespace Aquaculture.Application.Common;
 

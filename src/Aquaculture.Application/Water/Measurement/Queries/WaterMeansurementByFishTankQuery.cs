@@ -1,4 +1,4 @@
-﻿using Aquaculture.Domain.WaterMeasurementAggreate;
+﻿using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 using ErrorOr;
 using MediatR;
 

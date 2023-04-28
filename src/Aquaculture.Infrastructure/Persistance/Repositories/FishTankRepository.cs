@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
-using Aquaculture.Domain.FishTankAggregate;
+using Aquaculture.Domain.AquacultureContext.FishTankAggregate;
+using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
 using Aquaculture.Domain.Repositories;
 using Aquaculture.Infrastructure.Persistence;
 
@@ -18,5 +19,15 @@ public class FishTankRepository : IFishTankRepository
     {
         _dbContext.Add(fishTank);
         _dbContext.SaveChanges();
+    }
+
+    public IEnumerable<FishTank> GetAll()
+    {
+        return _dbContext.FishTanks.ToList();
+    }
+
+    public FishTank? Get(FishTankId fishTankId)
+    {
+        return _dbContext.FishTanks.Find(fishTankId);
     }
 }

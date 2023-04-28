@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Aquaculture.Application.Common;
-using Aquaculture.Domain.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

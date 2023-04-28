@@ -1,6 +1,5 @@
-﻿using Aquaculture.Domain.UserAggregate;
-using Aquaculture.Domain.UserAggregate.ValueObjects;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
+﻿using Aquaculture.Domain.PersonalContext.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

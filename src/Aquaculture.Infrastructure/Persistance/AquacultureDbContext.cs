@@ -1,7 +1,7 @@
-﻿using Aquaculture.Domain.FishInfoAggregate;
-using Aquaculture.Domain.FishTankAggregate;
-using Aquaculture.Domain.UserAggregate;
-using Aquaculture.Domain.WaterMeasurementAggreate;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate;
+using Aquaculture.Domain.AquacultureContext.FishTankAggregate.Entities;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
+using Aquaculture.Domain.PersonalContext.UserAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 

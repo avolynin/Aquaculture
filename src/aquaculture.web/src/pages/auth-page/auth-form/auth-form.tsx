@@ -2,11 +2,10 @@ import { TextField, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useForm, Controller, SubmitHandler, useFormState } from "react-hook-form";
 import './auth-form.css';
-import { emailValidation, passwordValidation, usernameValidation } from "./validation";
+import { emailValidation, passwordValidation } from "./validation";
 
 interface ISignInForm{
     email: string;
-    username: string;
     password: string;
 }
 
@@ -17,14 +16,13 @@ const AuthForm = () => {
 
     const registerUser = async (data: ISignInForm) => {
         const response = await fetch(
-            'api/auth/register',
+            'api/auth/login',
             {
                 method: "post",
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "FullName": data.username,
                     "email": data.email,
                     "password": data.password
                 })
@@ -56,25 +54,6 @@ const AuthForm = () => {
                             value ={field.value || ""}
                             error={!!errors.email?.message}
                             helperText={errors.email?.message}
-                        />
-                    )}
-                />
-                <Controller
-                    control={control}
-                    name="username"
-                    rules={usernameValidation}
-                    render={({field}) => (
-                        <TextField
-                            label="Username"
-                            type="username"
-                            size="small"
-                            margin="normal"
-                            className="auth-form__input"
-                            fullWidth={true}
-                            onChange={(e) => field.onChange(e)}
-                            value ={field.value || ""}
-                            error={!!errors.username?.message}
-                            helperText={errors.username?.message}
                         />
                     )}
                 />

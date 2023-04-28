@@ -1,5 +1,5 @@
 ﻿using Aquaculture.Application.Services.Users.Common;
-using Aquaculture.Domain.UserAggregate;
+using Aquaculture.Domain.PersonalContext.UserAggregate;
 using ErrorOr;
 using MediatR;
 

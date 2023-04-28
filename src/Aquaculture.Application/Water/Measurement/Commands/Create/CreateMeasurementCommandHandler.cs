@@ -1,8 +1,8 @@
-﻿using Aquaculture.Domain.Common.Errors;
-using Aquaculture.Domain.FishTankAggregate.ValueObjects;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+using Aquaculture.Domain.Common.Errors;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
+using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Aquaculture.Domain.Repositories;
-using Aquaculture.Domain.WaterMeasurementAggreate;
-using Aquaculture.Domain.WaterMeasurementAggreate.ValueObjects;
 using ErrorOr;
 using MediatR;
 

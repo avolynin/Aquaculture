@@ -1,5 +1,5 @@
-﻿using Aquaculture.Domain.FishInfoAggregate;
-using Aquaculture.Domain.FishInfoAggregate.ValueObjects;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.Entities;
+using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
 using Aquaculture.Domain.FishTankAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
