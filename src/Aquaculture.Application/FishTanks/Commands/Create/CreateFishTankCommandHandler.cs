@@ -2,10 +2,10 @@
 using Aquaculture.Application.Services.Users.Common;
 using Aquaculture.Application.Users.Commands.Register;
 using Aquaculture.Application.Water.Measurement.Commands.Create;
+using Aquaculture.Domain.AquacultureContext;
 using Aquaculture.Domain.AquacultureContext.FishTankAggregate;
 using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
-using Aquaculture.Domain.Repositories;
 using ErrorOr;
 using MediatR;
 
@@ -25,13 +25,10 @@ public class CreateFishTankCommandHandler :
     {
         await Task.CompletedTask;
 
-        var wmId = WaterMeasurementId.Create(command.WaterMeasurementId);
-        var fiId = FishInfoId.Create(command.FishInfoId);
-
-        FishTank fishTank = FishTank.CreateNew(
-            waterMeasurementId: wmId,
-            fishInfoId: fiId,
-            name: command.Name);
+        FishTank fishTank = FishTank.Create(
+            name: command.Name,
+            volume: command.Volume,
+            location: command.Location);
 
         _fishTankRepository.Add(fishTank);
 

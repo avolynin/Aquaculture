@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
 using Aquaculture.Domain.Common.Errors;
+using Aquaculture.Domain.Common.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 using Aquaculture.Domain.Repositories;
 using ErrorOr;

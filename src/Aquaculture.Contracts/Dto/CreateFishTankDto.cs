@@ -1,6 +1,8 @@
-﻿namespace Aquaculture.Contracts.Dto;
+﻿using System.Device.Location;
+
+namespace Aquaculture.Contracts.Dto;
 
 public record CreateFishTankDto(
-    Guid WaterMeasurementId,
-    Guid FishInfoId,
-    string Name);
+    string Name,
+    float Volume,
+    GeoCoordinate Location);

@@ -2,9 +2,12 @@
 using Aquaculture.Application.Common;
 using Aquaculture.Domain.Repositories;
 using Aquaculture.Infrastructure.Authentication;
-using Aquaculture.Infrastructure.Persistance.Repositories;
-using Aquaculture.Infrastructure.Persistence;
-using Aquaculture.Infrastructure.Persistence.Repositories;
+using Aquaculture.Infrastructure.Persistance.AquacultureContext;
+using Aquaculture.Infrastructure.Persistance.ControlWaterContext;
+using Aquaculture.Infrastructure.Persistance.DirectoryContext;
+using Aquaculture.Infrastructure.Persistance.DirectoryContext.Repositories;
+using Aquaculture.Infrastructure.Persistance.InfluenceWaterContext;
+using Aquaculture.Infrastructure.Persistance.PersonalContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +25,7 @@ public static class IServiceCollectionExtension
     {
         services
             .AddAuth(configurationManager)
-            .AddPersistance();
+            .AddPersistance(configurationManager);
 
         services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
@@ -30,13 +33,27 @@ public static class IServiceCollectionExtension
         return services;
     }
 
-    public static IServiceCollection AddPersistance(this IServiceCollection services)
+    public static IServiceCollection AddPersistance(this IServiceCollection services, ConfigurationManager config)
     {
         services.AddDbContext<AquacultureDbContext>(options =>
-            options.UseSqlServer("Server=host.docker.internal;Database=Aquaculture;User ID=sa;Password=Pas_sw0rd2023;TrustServerCertificate=True;"));
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<WaterControlDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<DirectoryDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<InfluenceWaterDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<PersonalDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IFishTankRepository, FishTankRepository>();
-        services.AddScoped<IFishInfoRepository, FishInfoRepository>();
+        services.AddScoped<IPumpRepository, PumpRepository>();
+        services.AddScoped<IDiseaseRepository, DiseaseRepository>();
+        services.AddScoped<IMasterNetworkRepository, SensorRepository>();
+        services.AddScoped<IWaterParamRepository, WaterParamRepository>();
+        services.AddScoped<Domain.AquacultureContext.IFishTankRepository, Persistance.AquacultureContext.FishTankRepository>();
+        services.AddScoped<Domain.InfluenceWaterContext.Repositories.IFishTankRepository, Persistance.InfluenceWaterContext.FishTankRepository>();
+        services.AddScoped<IFishTypeRepository, FishTypeRepository>();
         services.AddScoped<IWaterMeasurementRepository, WaterMeasurementRepository>();
         return services;
     }

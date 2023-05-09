@@ -1,7 +1,9 @@
-﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+﻿using System.Device.Location;
 using Aquaculture.Domain.Common.Errors;
+using Aquaculture.Domain.Common.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
+using Aquaculture.Domain.DirectoryContext.WaterParamAggregate.ValueObjects;
 using Aquaculture.Domain.Repositories;
 using ErrorOr;
 using MediatR;
@@ -23,7 +25,7 @@ public class CreateMeasurementCommandHandler :
     {
         await Task.CompletedTask;
         var fishTankId = FishTankId.Create(command.FishTankId);
-        var waterParams = command.WaterParams;
+        var waterParamId = WaterParamId.Create(command.WaterParamId);
 
         if (_measurementRepository.Get(fishTankId, command.TimeStamp) is not null)
         {
@@ -31,15 +33,12 @@ public class CreateMeasurementCommandHandler :
         }
 
         WaterMeasurement measurement = WaterMeasurement.Create(
-            fishTankId,
-            command.TimeStamp,
-            WaterParams.Create(
-                waterParams.Temperature,
-                waterParams.DissolvedOxygen,
-                waterParams.Acidity,
-                waterParams.Alkalinity,
-                waterParams.CarbonDioxide,
-                waterParams.Temperature));
+            fishTankId: fishTankId,
+            timeStamp: command.TimeStamp,
+            waterParamId: waterParamId,
+            value: command.Value,
+            depth: command.Depth,
+            location: command.Location);
 
         _measurementRepository.Add(measurement);
 

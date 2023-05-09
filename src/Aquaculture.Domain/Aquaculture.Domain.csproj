@@ -12,8 +12,4 @@
     <PackageReference Include="System.Device.Location.Portable" Version="1.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="InfluenceWaterContext\FishTankAggregate\" />
-  </ItemGroup>
-
 </Project>

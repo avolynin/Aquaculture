@@ -1,5 +1,4 @@
-﻿using Aquaculture.Domain.Common.ValueObjects;
-using Aquaculture.Domain.DirectoryContext.FishTypeAggregate.ValueObjects;
+﻿using Aquaculture.Domain.DirectoryContext.FishTypeAggregate.ValueObjects;
 using Aquaculture.Domain.DirectoryContext.WaterParamAggregate.ValueObjects;
 using Aquaculture.Domain.Models;
 

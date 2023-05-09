@@ -1,4 +1,4 @@
-﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+﻿using Aquaculture.Domain.Common.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 
 namespace Aquaculture.Domain.Repositories;

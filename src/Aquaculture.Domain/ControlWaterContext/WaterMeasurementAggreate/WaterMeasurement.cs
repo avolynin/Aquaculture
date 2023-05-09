@@ -1,19 +1,19 @@
 ﻿using System.Device.Location;
-using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
+using Aquaculture.Domain.Common.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Aquaculture.Domain.DirectoryContext.WaterParamAggregate.ValueObjects;
 using Aquaculture.Domain.Models;
-using Aquaculture.Domain.SensorAggregate.ControlWaterContext.ValueObjects;
 
 namespace Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 
 public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
 {
     public FishTankId FishTankId { get; private set; }
-    public SensorId? SensorId { get; private set; }
+    public SensorId SensorId { get; private set; }
     public WaterParamId WaterParamId { get; private set; }
     public float Value { get; private set; }
-    public float Depth { get; private set; }
+    public float? Depth { get; private set; }
     public GeoCoordinate Location { get; private set; }
     public DateTime TimeStamp { get; private set; }
 
@@ -23,9 +23,8 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
         DateTime timeStamp,
         WaterParamId waterParamId,
         float value,
-        float depth,
-        GeoCoordinate location,
-        SensorId? sensorId = null)
+        float? depth,
+        GeoCoordinate location)
         : base(id)
     {
         FishTankId = fishTankId;
@@ -34,7 +33,6 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
         Value = value;
         Depth = depth;
         Location = location;
-        SensorId = sensorId;
     }
 
     public static WaterMeasurement Create(
@@ -42,7 +40,7 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
         DateTime timeStamp,
         WaterParamId waterParamId,
         float value,
-        float depth,
+        float? depth,
         GeoCoordinate location)
     {
         return new WaterMeasurement(
@@ -52,7 +50,10 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
             waterParamId,
             value,
             depth,
-            location);
+            location)
+        {
+            SensorId = SensorId.Create(Guid.Empty)
+        };
     }
 
     public static WaterMeasurement CreateFromSensor(
@@ -60,7 +61,7 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
         DateTime timeStamp,
         WaterParamId waterParamId,
         float value,
-        float depth,
+        float? depth,
         GeoCoordinate location,
         SensorId sensorId)
     {
@@ -71,8 +72,10 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
             waterParamId,
             value,
             depth,
-            location,
-            sensorId: sensorId);
+            location)
+        {
+            SensorId = sensorId
+        };
     }
 
 #pragma warning restore CS8618

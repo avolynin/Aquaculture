@@ -1,6 +1,11 @@
-﻿namespace Aquaculture.Contracts.Dto;
+﻿using System.Device.Location;
+
+namespace Aquaculture.Contracts.Dto;
 
 public record CreateWaterMeasurementDto(
     Guid FishTankId,
     DateTime TimeStamp,
-    WaterParamsDto WaterParams);
+    Guid WaterParamId,
+    float Value,
+    float? Depth,
+    GeoCoordinate Location);

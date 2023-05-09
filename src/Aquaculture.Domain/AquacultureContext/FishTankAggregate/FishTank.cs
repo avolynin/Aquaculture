@@ -1,7 +1,9 @@
 ﻿using System.Device.Location;
 using Aquaculture.Domain.AquacultureContext.FishTankAggregate.Entities;
 using Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
-using Aquaculture.Domain.ControlWaterContext.SensorAggregate.ValueObjects;
+using Aquaculture.Domain.Common.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
+using Aquaculture.Domain.DirectoryContext.FishTypeAggregate.ValueObjects;
 using Aquaculture.Domain.Models;
 
 namespace Aquaculture.Domain.AquacultureContext.FishTankAggregate;
@@ -10,13 +12,11 @@ public class FishTank : AggregateRoot<FishTankId>
 {
     private readonly List<FishInfo> _fishInfos = new();
 
-    private readonly List<SensorId> _sensorIds = new();
-
     public string Name { get; private set; } = null!;
     public float Volume { get; private set; }
     public GeoCoordinate Location { get; set; }
+    public MasterNetworkId MasterNetworkId { get; set; }
     public IReadOnlyList<FishInfo> FishInfos => _fishInfos.AsReadOnly();
-    public IReadOnlyList<SensorId> SensorIds => _sensorIds.AsReadOnly();
 
     private FishTank(
         FishTankId id,
@@ -39,14 +39,18 @@ public class FishTank : AggregateRoot<FishTankId>
             FishTankId.CreateUnique(),
             name,
             volume,
-            location);
+            location)
+        {
+            MasterNetworkId = MasterNetworkId.Create(Guid.Empty)
+        };
     }
 
     public void CreateFishInfo(
         int numberFish,
+        FishTypeId typeId,
         FishType type)
     {
-        _fishInfos.Add(FishInfo.Create(numberFish, type));
+        _fishInfos.Add(FishInfo.Create(numberFish, typeId, type));
     }
 
     public void AddFish(FishInfoId fishInfoId, int number)
