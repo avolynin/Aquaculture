@@ -47,10 +47,9 @@ public class FishTank : AggregateRoot<FishTankId>
 
     public void CreateFishInfo(
         int numberFish,
-        FishTypeId typeId,
-        FishType type)
+        FishTypeId typeId)
     {
-        _fishInfos.Add(FishInfo.Create(numberFish, typeId, type));
+        _fishInfos.Add(FishInfo.Create(numberFish, typeId));
     }
 
     public void AddFish(FishInfoId fishInfoId, int number)
@@ -79,6 +78,11 @@ public class FishTank : AggregateRoot<FishTankId>
         {
             return _fishInfos.IntersectBy(fishInfoIds, x => x.Id).Sum(s => s.Biomass);
         }
+    }
+
+    public void MountMasterNetwork(MasterNetworkId masterId)
+    {
+        MasterNetworkId = masterId;
     }
 
 #pragma warning restore CS8618

@@ -7,6 +7,7 @@ namespace Aquaculture.Domain.DirectoryContext.FishTypeAggregate;
 public class FishType : AggregateRoot<FishTypeId>
 {
     public string Name { get; private set; } = null!;
+    public float Weight { get; private set; }
     public FishAge Age { get; private set; }
     public List<WaterParamId> ComfortParams { get; private set; }
     public List<WaterParamId> TolerantParams { get; private set; }
@@ -15,6 +16,7 @@ public class FishType : AggregateRoot<FishTypeId>
     private FishType(
         FishTypeId id,
         string name,
+        float weight,
         FishAge fishAge,
         List<WaterParamId> сomfortParams,
         List<WaterParamId> tolerantParams,
@@ -22,6 +24,7 @@ public class FishType : AggregateRoot<FishTypeId>
         : base(id)
     {
         Name = name;
+        Weight = weight;
         Age = fishAge;
         ComfortParams = сomfortParams;
         TolerantParams = tolerantParams;
@@ -30,6 +33,7 @@ public class FishType : AggregateRoot<FishTypeId>
 
     public static FishType Create(
         string name,
+        float weight,
         FishAge fishAge,
         List<WaterParamId> сomfortParams,
         List<WaterParamId> tolerantParams,
@@ -38,6 +42,7 @@ public class FishType : AggregateRoot<FishTypeId>
         return new FishType(
             FishTypeId.CreateUnique(),
             name,
+            weight,
             fishAge,
             сomfortParams,
             tolerantParams,

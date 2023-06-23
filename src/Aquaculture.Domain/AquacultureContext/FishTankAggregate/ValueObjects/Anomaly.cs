@@ -1,16 +1,19 @@
-﻿using Aquaculture.Domain.DirectoryContext.DiseaseAggregate.ValueObjects;
+﻿using Aquaculture.Domain.AquacultureContext.FishTankAggregate.Entities;
+using Aquaculture.Domain.DirectoryContext.DiseaseAggregate.ValueObjects;
 using Aquaculture.Domain.Models;
 
 namespace Aquaculture.Domain.AquacultureContext.FishTankAggregate.ValueObjects;
 
 public class Anomaly : ValueObject
 {
-    public List<DiseaseId> DiseaseIds { get; }
+    private readonly List<DiseaseId> _diseaseIds = new();
+
     public int DeadFish { get; }
+    public IReadOnlyList<DiseaseId> DiseaseIds => _diseaseIds.AsReadOnly();
 
     private Anomaly(List<DiseaseId> diseaseIds, int deadFish)
     {
-        DiseaseIds = diseaseIds;
+        _diseaseIds = diseaseIds;
         DeadFish = deadFish;
     }
 

@@ -1,7 +1,5 @@
-﻿using Aquaculture.Domain.DirectoryContext.DiseaseAggregate.ValueObjects;
-using Aquaculture.Domain.DirectoryContext.FishTypeAggregate;
+﻿using Aquaculture.Domain.DirectoryContext.FishTypeAggregate;
 using Aquaculture.Domain.DirectoryContext.FishTypeAggregate.ValueObjects;
-using Aquaculture.Domain.DirectoryContext.WaterParamAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -28,7 +26,12 @@ public class FishTypeConfigurations : IEntityTypeConfiguration<FishType>
             value => FishTypeId.Create(value));
 
         builder.Property(m => m.Name);
-        builder.OwnsOne(m => m.Age);
+        builder.Property(m => m.Weight);
+        builder.OwnsOne(m => m.Age, a =>
+        {
+            a.Property(u => u.Name);
+            a.Property(u => u.Code).IsRequired(false);
+        });
     }
 
     private void ConfigureCriticalParamsTable(EntityTypeBuilder<FishType> builder)

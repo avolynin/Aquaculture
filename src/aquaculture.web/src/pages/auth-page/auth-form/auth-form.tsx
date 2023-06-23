@@ -36,7 +36,7 @@ const AuthForm = () => {
     return(
         <div className="auth-form">
             <Typography variant="h1" component="div" gutterBottom={true}>
-                 Log in
+                 Авторизация
             </Typography>
             <form className="auth-form__form" onSubmit={handleSubmit(onSubmit)}>
                 <Controller
@@ -45,7 +45,7 @@ const AuthForm = () => {
                     rules={emailValidation}
                     render={({field}) => (
                         <TextField
-                            label="Email"
+                            label="Эл. почта"
                             size="small"
                             margin="normal"
                             className="auth-form__input"
@@ -63,7 +63,7 @@ const AuthForm = () => {
                     rules={passwordValidation}
                     render={({field}) => (
                         <TextField
-                            label="Password"
+                            label="Пароль"
                             type="password"
                             size="small"
                             margin="normal"
@@ -85,7 +85,7 @@ const AuthForm = () => {
                         marginTop: 2
                     }}
                 >
-                    Enter
+                    Войти
                 </Button>
             </form>
         </div>

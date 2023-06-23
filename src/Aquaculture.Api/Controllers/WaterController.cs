@@ -1,7 +1,6 @@
 ﻿using Aquaculture.Application.Water.Measurement.Commands.Create;
 using Aquaculture.Application.Water.Measurement.Queries;
 using Aquaculture.Contracts.Dto;
-using Aquaculture.Domain.WaterMeasurementAggreate;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -37,6 +36,26 @@ public class WaterController : ApiController
     public async Task<IActionResult> GetMeasurement(Guid fishTankId)
     {
         var query = new WaterMeansurementByFishTankQuery(fishTankId);
+        var queryMeasurementsResult = await _sender.Send(query);
+
+        return queryMeasurementsResult.Match(
+            measurementsResult =>
+            {
+                var waterMeasurementDtos = new List<WaterMeasurementDto>();
+                foreach (var item in measurementsResult)
+                {
+                    waterMeasurementDtos.Add(_mapper.Map<WaterMeasurementDto>(item));
+                }
+
+                return Ok(waterMeasurementDtos);
+            },
+            errors => Problem(errors));
+    }
+
+    [HttpPost("measurement/byPeriod")]
+    public async Task<IActionResult> GetMeasurementPeriod(WaterMeasurementsPeriodDto queryDto)
+    {
+        var query = _mapper.Map<WaterMeansurementPeriodQuery>(queryDto);
         var queryMeasurementsResult = await _sender.Send(query);
 
         return queryMeasurementsResult.Match(

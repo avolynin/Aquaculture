@@ -19,11 +19,17 @@ import SetMealRoundedIcon from '@mui/icons-material/SetMealRounded';
 import WaterRoundedIcon from '@mui/icons-material/WaterRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import MeasurementsPage from "../measurements-page/measurements-page";
+import CoronavirusIcon from '@mui/icons-material/Coronavirus';
 import { ExpandLess, ExpandMore, StarBorder } from "@mui/icons-material";
 import SideBar from "./components/sidebar";
 import CssBaseline from '@mui/material/CssBaseline';
+import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import { SideBarElement } from "./types";
-import FishTypePage from "../fishType-page/fishType-page";
+import WaterParamPage from "../lib-pages/waterParam-page/waterParam-page";
+import FishTypePage from "../lib-pages/fishType-page/fishType-page";
+import DiseasePage from "../lib-pages/disease-page/disease-page";
+import FishTankPage from "../fishTank-page/fishTank-page";
+import DevicesPage from "../devices-page/devices-page";
 
 export const navData: SideBarElement[] = [
     {
@@ -38,6 +44,13 @@ export const navData: SideBarElement[] = [
         icon: <BarChartIcon sx={{fontSize: "35px"}}/>,
         text: "Измерения",
         link: "/measurements",
+        children: undefined
+    },
+    {
+        id: 3,
+        icon: <DisplaySettingsIcon sx={{fontSize: "35px"}}/>,
+        text: "Устройства",
+        link: "/devices",
         children: undefined
     },
     {
@@ -57,8 +70,15 @@ export const navData: SideBarElement[] = [
             {
                 id: 202,
                 icon: <WaterRoundedIcon sx={{fontSize: "25px"}}/>,
-                text: "Параметры водной среды",
-                link: "explore",
+                text: "Параметры",
+                link: "/lib/waterParams",
+                children: undefined
+            },
+            {
+                id: 203,
+                icon: <CoronavirusIcon sx={{fontSize: "25px"}}/>,
+                text: "Болезни",
+                link: "/lib/diseases",
                 children: undefined
             }
         ]
@@ -95,10 +115,10 @@ const MainPage: React.FC = () => {
                 >
                 <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center'}}>
                 Аквакультура
                 </Typography>
-                <Button color="inherit">Войти</Button>
+                <Button color="inherit">И.И.Иванов</Button>
             </Toolbar>
             </AppBar>
             <SideBar navOpen={navOpen} navData={navData}/>
@@ -112,8 +132,11 @@ const MainPage: React.FC = () => {
                 height:'100vh'
             }}>
                  <Routes>
-                     <Route path="/" element={<AuthPage />} />
+                     <Route path="/" element={<FishTankPage />} />
                      <Route path="/lib/fishTypes"element={<FishTypePage />} />
+                     <Route path="/devices"element={<DevicesPage />} />
+                     <Route path="/lib/waterParams"element={<WaterParamPage />} />
+                     <Route path="/lib/diseases"element={<DiseasePage />} />
                      <Route path="/auth/login" element={<AuthPage />} />
                      <Route path="/measurements" element={<MeasurementsPage />} />
                  </Routes>

@@ -1,7 +1,7 @@
 ﻿using System.Device.Location;
 using Aquaculture.Domain.Common.ValueObjects;
+using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.Entities;
 using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
-using Aquaculture.Domain.ControlWaterContext.SensorAggregate;
 using Aquaculture.Domain.Models;
 
 namespace Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate;

@@ -37,7 +37,7 @@ const SideBar: React.FC<Props> = ({navOpen, navData}) => {
   return (
     <Drawer open={navOpen} variant="permanent" sx={{ 
         flexShrink: 0, 
-        width: !navOpen ? '67px' : '240px', 
+        width: !navOpen ? '67px' : '210px', 
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
       }}>
@@ -45,7 +45,7 @@ const SideBar: React.FC<Props> = ({navOpen, navData}) => {
         sx={{ 
           bgcolor: '#1976d2', 
           paddingTop: 8,
-          width: navOpen ? 240 : 'min-content', 
+          width: navOpen ? 210 : 'min-content', 
           color: 'white',
           height: '100vh',
         }}

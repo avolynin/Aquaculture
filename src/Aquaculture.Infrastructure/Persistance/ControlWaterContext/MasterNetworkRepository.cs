@@ -1,5 +1,4 @@
 ﻿using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate;
-using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.Entities;
 using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
 using Aquaculture.Domain.Repositories;
 

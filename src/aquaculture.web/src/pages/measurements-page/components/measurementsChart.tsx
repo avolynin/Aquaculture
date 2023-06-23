@@ -1,42 +1,59 @@
 import { useState } from "react";
 import { MeasurementChartData, WaterMeasurement } from "../types";
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, Tooltip, XAxis, YAxis } from "recharts";
+import { FishTypeDto, MeasurementDto, PredictDto } from "../../../contracts";
+
+function FishTypeParams(fishType: FishTypeDto | undefined, waterParamId: string) {
+    if(fishType !== undefined)
+    {
+    return <>
+    <ReferenceLine y={fishType.comfortParams.get(waterParamId)?.maxValue} stroke="green" strokeWidth={2} />
+    <ReferenceLine y={fishType.comfortParams.get(waterParamId)?.minValue} stroke="green" strokeWidth={2} />
+    <ReferenceLine y={fishType.tolerantParams.get(waterParamId)?.maxValue} stroke="yellow" strokeWidth={2} />
+    <ReferenceLine y={fishType.tolerantParams.get(waterParamId)?.minValue} stroke="yellow" strokeWidth={2} />
+    <ReferenceLine y={fishType.criticalParams.get(waterParamId)?.maxValue} stroke="red" strokeWidth={2} />
+    <ReferenceLine y={fishType.criticalParams.get(waterParamId)?.minValue} stroke="red" strokeWidth={2} />
+    </>
+    }
+  }
 
 interface Props{
-    data: WaterMeasurement[];
+    data: MeasurementDto[];
+    predictData: PredictDto[];
+    fishType: FishTypeDto | undefined;
 }
 
-const MeasurementsChart: React.FC<Props> = ({data}) => {
+const MeasurementsChart: React.FC<Props> = ({data, predictData, fishType}) => {
     data?.sort(function(a, b): any{
         return (Date.parse(b.timeStamp) - Date.parse(a.timeStamp));
     });
+    const waterParamId = data[0].waterParamId;
 
     var chartsData = new Array();
     data?.forEach(function(item){
         chartsData.push({
-            name: item.timeStamp, 
-            temperature: item.waterParams.temperature,
-            dissolvedOxygen: item.waterParams.dissolvedOxygen,
-            acidity: item.waterParams.acidity,
-            alkalinity: item.waterParams.alkalinity,
-            carbonDioxide: item.waterParams.carbonDioxide,
-            ammonia: item.waterParams.ammonia
+            name: item.timeStamp.split(' ')[1],
+            waterParam: item.waterParamId,
+            value: item.value
         });
     });
-    //setChartsData(tmp);
+    predictData?.forEach(function(item){
+        chartsData.push({
+            name: item.timeStamp.split(' ')[1],
+            waterParam: item.waterParamId,
+            predictValue: item.value
+        });
+    });
 
     return(
         <LineChart width={600} height={300} data={chartsData} >
-            <Line type="monotone" dataKey="temperature" stroke="#E7C697" strokeWidth={3}/>
-            <Line type="monotone" dataKey="dissolvedOxygen" stroke="#00382B" strokeWidth={3}/>
-            <Line type="monotone" dataKey="acidity" stroke="#1CAC78" strokeWidth={3}/>
-            <Line type="monotone" dataKey="alkalinity" stroke="#B44C43" strokeWidth={3}/>
-            <Line type="monotone" dataKey="carbonDioxide" stroke="#6C7156" strokeWidth={3}/>
-            <Line type="monotone" dataKey="ammonia" stroke="#FBA0E3" strokeWidth={3}/>
-            
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="name" />
             <YAxis />
+            {FishTypeParams(fishType, waterParamId)}
+
+            <Line isAnimationActive={false} type="monotone" dataKey="predictValue" stroke="#42a4ff" strokeWidth={4} strokeDasharray="5 5" name="Прогноз"/>
+            <Line isAnimationActive={false} type="monotone" dataKey="value" stroke="#000000" strokeWidth={4} name="Значение"/>
             <Tooltip />
             <Legend />
         </LineChart>

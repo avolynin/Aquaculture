@@ -1,6 +1,5 @@
 ﻿using System.Device.Location;
 using Aquaculture.Domain.Common.ValueObjects;
-using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
 using Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate.ValueObjects;
 using Aquaculture.Domain.DirectoryContext.WaterParamAggregate.ValueObjects;
 using Aquaculture.Domain.Models;
@@ -10,7 +9,6 @@ namespace Aquaculture.Domain.ControlWaterContext.WaterMeasurementAggreate;
 public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
 {
     public FishTankId FishTankId { get; private set; }
-    public SensorId SensorId { get; private set; }
     public WaterParamId WaterParamId { get; private set; }
     public float Value { get; private set; }
     public float? Depth { get; private set; }
@@ -50,10 +48,7 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
             waterParamId,
             value,
             depth,
-            location)
-        {
-            SensorId = SensorId.Create(Guid.Empty)
-        };
+            location);
     }
 
     public static WaterMeasurement CreateFromSensor(
@@ -62,8 +57,7 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
         WaterParamId waterParamId,
         float value,
         float? depth,
-        GeoCoordinate location,
-        SensorId sensorId)
+        GeoCoordinate location)
     {
         return new WaterMeasurement(
             WaterMeasurementId.CreateUnique(),
@@ -72,10 +66,12 @@ public class WaterMeasurement : AggregateRoot<WaterMeasurementId>
             waterParamId,
             value,
             depth,
-            location)
-        {
-            SensorId = sensorId
-        };
+            location);
+    }
+
+    public static object? Create(float depth, Guid fishTankId, GeoCoordinate location, DateTime timeStamp, float value, Guid waterParamId)
+    {
+        throw new NotImplementedException();
     }
 
 #pragma warning restore CS8618

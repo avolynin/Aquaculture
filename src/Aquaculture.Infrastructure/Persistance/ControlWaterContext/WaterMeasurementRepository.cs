@@ -25,6 +25,12 @@ public class WaterMeasurementRepository : IWaterMeasurementRepository
             m => m.FishTankId == fishTankId).ToList();
     }
 
+    public IEnumerable<WaterMeasurement> GetByPeriod(FishTankId fishTankId, DateTime from, DateTime to)
+    {
+        return _dbContext.WaterMeasurements.Where(
+            m => m.FishTankId == fishTankId && (m.TimeStamp >= from && m.TimeStamp <= to)).ToList();
+    }
+
     public WaterMeasurement? Get(FishTankId fishTankId, DateTime timeStamp)
     {
         return _dbContext.WaterMeasurements.SingleOrDefault(

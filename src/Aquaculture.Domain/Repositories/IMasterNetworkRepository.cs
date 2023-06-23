@@ -1,10 +1,11 @@
-﻿using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.Entities;
-using Aquaculture.Domain.ControlWaterContext.SensorAggregate.ValueObjects;
+﻿using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate;
+using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.Entities;
+using Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
 
 namespace Aquaculture.Domain.Repositories;
 
-public interface ISensorRepository
+public interface IMasterNetworkRepository
 {
-    void Add(Sensor sensor);
-    Sensor? Get(SensorId sensorId);
+    void Add(MasterNetwork master);
+    MasterNetwork? Get(MasterNetworkId masterId);
 }

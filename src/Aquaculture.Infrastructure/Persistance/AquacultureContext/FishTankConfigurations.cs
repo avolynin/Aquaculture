@@ -53,7 +53,22 @@ public class FishTankConfigurations : IEntityTypeConfiguration<FishTank>
                 value => FishTypeId.Create(value));
 
             sb.Property(s => s.NumberFish);
-            sb.Property(s => s.Anomaly).IsRequired(false);
+            sb.OwnsOne(s => s.Anomaly, a =>
+            {
+                a.Property(u => u.DeadFish);
+                a.OwnsMany(u => u.DiseaseIds, dib =>
+                {
+                    dib.ToTable("DiseaseIds");
+                    dib.WithOwner().HasForeignKey("FishInfoId", "FishTankId");
+                    dib.HasKey("Id");
+
+                    dib.Property(d => d.Value)
+                        .HasColumnName("DiseaseId");
+                });
+
+                sb.Navigation(s => s.Anomaly).Metadata.SetField("_anomaly");
+                sb.Navigation(s => s.Anomaly).UsePropertyAccessMode(PropertyAccessMode.Field);
+            });
             sb.Property(s => s.CreatedDate);
             sb.Property(s => s.CommitedDate);
         });

@@ -30,11 +30,6 @@ public class WaterMeasurementConfigurations : IEntityTypeConfiguration<WaterMeas
             id => id.Value,
             value => FishTankId.Create(value));
 
-        builder.Property(m => m.SensorId)
-            .HasConversion(
-            id => id.Value,
-            value => SensorId.Create(value));
-
         builder.Property(m => m.Value);
         builder.Property(m => m.Depth).IsRequired(false);
         builder.Property(m => m.Location);

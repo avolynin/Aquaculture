@@ -1,5 +1,4 @@
-﻿using Aquaculture.Domain.ControlWaterContext.SensorAggregate.ValueObjects;
-using Aquaculture.Domain.Models;
+﻿using Aquaculture.Domain.Models;
 
 namespace Aquaculture.Domain.ControlWaterContext.MasterNetworkAggregate.ValueObjects;
 

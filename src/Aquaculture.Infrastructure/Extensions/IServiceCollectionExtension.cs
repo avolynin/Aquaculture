@@ -49,7 +49,7 @@ public static class IServiceCollectionExtension
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IPumpRepository, PumpRepository>();
         services.AddScoped<IDiseaseRepository, DiseaseRepository>();
-        services.AddScoped<IMasterNetworkRepository, SensorRepository>();
+        services.AddScoped<IMasterNetworkRepository, MasterNetworkRepository>();
         services.AddScoped<IWaterParamRepository, WaterParamRepository>();
         services.AddScoped<Domain.AquacultureContext.IFishTankRepository, Persistance.AquacultureContext.FishTankRepository>();
         services.AddScoped<Domain.InfluenceWaterContext.Repositories.IFishTankRepository, Persistance.InfluenceWaterContext.FishTankRepository>();
